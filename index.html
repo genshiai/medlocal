@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genshi AI for Hospitals - Medical Local LLM</title>
+    <meta name="description" content="医療特化型ローカルLLM「Genshi Engine」。医師の働き方改革と病院経営の質的向上を実現する、次世代医療AIインフラ。">
+    <!-- Fonts: Noto Serif JP for that "Lab/Academic" feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600;700&family=Noto+Sans+JP:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body class="lab-theme">
+
+    <div class="lab-container">
+        <!-- Header -->
+        <header class="lab-header">
+            <div class="lab-logo">
+                <span class="logo-text">GENSHI AI</span>
+                <span class="logo-sub">Medical Local LLM Engine</span>
+            </div>
+            <nav class="lab-nav">
+                <a href="#issue">Issue</a>
+                <a href="#solution">Solution</a>
+                <a href="#deployment">Deployment</a>
+                <a href="#security">Security</a>
+                <a href="blog.html">Blog</a>
+                <a href="pharma.html" class="nav-accent">For Pharma / Data Partners</a>
+                <a href="contact_hospital.html" class="nav-contact">Contact</a>
+            </nav>
+        </header>
+
+        <!-- Hero: Academic Style -->
+        <section class="lab-hero">
+            <div class="hero-grid">
+                <div class="hero-left animate-on-scroll">
+                    <h1 class="hero-jp">書く医療から、<br>診る医療へ。</h1>
+                    <p class="hero-en">FROM WRITING TO VIEWING MEDICINE</p>
+                </div>
+                <div class="hero-right animate-on-scroll delay-1">
+                    <p class="hero-desc">
+                        膨大なドキュメント作成に追われる日々を終わらせる。<br>
+                        院内完結型AI「Genshi Engine」が、<br>
+                        医師本来の時間を奪還し、医療の質を高める。
+                    </p>
+                    <div class="hero-cta">
+                        <a href="#contact" class="btn-lab-primary">導入診断・お問い合わせ</a>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image-strip animate-on-scroll delay-2">
+                <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&auto=format&fit=crop&w=2080&q=80"
+                    alt="Lab Abstract">
+            </div>
+        </section>
+
+        <!-- Section 1: Issue (Pain) -->
+        <section id="issue" class="lab-section">
+            <div class="section-label">01 / ISSUE</div>
+            <div class="lab-grid">
+                <div class="grid-title animate-on-scroll">
+                    <h2>医療現場の<br>「見えない疲弊」</h2>
+                    <p class="jp-sub">電子カルテ導入のジレンマ</p>
+                </div>
+                <div class="grid-content">
+                    <!-- New Pain: The AI Paradox -->
+                    <div class="pain-paradox animate-on-scroll"
+                        style="margin-bottom: 60px; border-bottom: 1px solid #eee; padding-bottom: 40px;">
+                        <h3 style="font-size: 1.8rem; margin-bottom: 20px;">なぜ、医療だけが取り残されるのか？</h3>
+                        <p class="lead-text" style="font-size: 1.1rem; color: #333;">
+                            日常ではChatGPT等の生成AIが当たり前に使われる時代。<br>
+                            しかし、医療現場では<strong>「患者プライバシー」</strong>という壁が、その恩恵を阻んできました。<br>
+                            セキュリティのためにインターネットを遮断すれば、クラウドAIは使えない。<br>
+                            このジレンマが、現場の進化を止めていたのです。
+                        </p>
+                        <p style="font-weight: 700; color: var(--color-accent); margin-top: 20px;">
+                            &rarr; GENSHI Engineなら、完全オフラインでその壁を突破します。
+                        </p>
+                    </div>
+
+                    <div class="content-split-img">
+                        <div class="text-side animate-on-scroll">
+                            <p class="lead-text">
+                                情報はデータ化されましたが、医師は「画面に向かう時間」が増大。<br>
+                                「書く」業務が診療を圧迫し、患者と向き合う時間が削られています。
+                            </p>
+                            <div class="pain-list">
+                                <dl class="lab-dl">
+                                    <dt>膨大な事務作業</dt>
+                                    <dd>退院サマリー、紹介状、診断書作成...。<br>日々積み重なるドキュメント作成が、医師の残業の主因となっています。</dd>
+                                </dl>
+                                <dl class="lab-dl">
+                                    <dt>情報の分断と認知負荷</dt>
+                                    <dd>過去の診療記録や複雑な既往歴を「思い出す」作業。<br>脳のメモリを消費し、本来注力すべき診断・治療への集中を阻害します。</dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="img-side animate-on-scroll delay-1">
+                            <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+                                alt="Medical Documentation">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Solution (Genshi Engine) -->
+        <section id="solution" class="lab-section">
+            <div class="section-label">02 / SOLUTION</div>
+            <div class="lab-grid">
+                <div class="grid-title animate-on-scroll">
+                    <h2>Genshi Engine</h2>
+                    <p class="jp-sub">医療特化型ローカルLLM</p>
+                </div>
+                <div class="grid-content">
+                    <div class="solution-hero-img animate-on-scroll">
+                        <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+                            alt="AI Analysis">
+                    </div>
+                    <div class="solution-cards">
+                        <div class="lab-card animate-on-scroll">
+                            <div class="card-head">Function.01</div>
+                            <h3>ドキュメント自動生成</h3>
+                            <p>診察録を解析し、退院サマリーや紹介状のドラフトを瞬時に自動生成。医師は「AIの案を確認・修正する」だけ。</p>
+                        </div>
+                        <div class="lab-card animate-on-scroll delay-1">
+                            <div class="card-head">Function.02</div>
+                            <h3>診療情報の構造化</h3>
+                            <p>「疑い病名」「処方意図」「有害事象」を抽出。日々の診療記録が、そのまま研究用データベースとして蓄積されます。</p>
+                        </div>
+                        <div class="lab-card animate-on-scroll delay-2">
+                            <div class="card-head">Function.03</div>
+                            <h3>教育支援</h3>
+                            <p>研修医のカルテをAIが指導医視点でセルフチェック。指導の質を担保しつつ、指導医の確認時間を大幅に短縮します。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Benefits (Value) -->
+        <section class="lab-section">
+            <div class="section-label">03 / VALUE</div>
+            <div class="lab-grid">
+                <div class="grid-title animate-on-scroll">
+                    <h2>導入価値</h2>
+                </div>
+                <div class="grid-content">
+                    <div class="value-table animate-on-scroll">
+                        <div class="value-row">
+                            <div class="value-head">FOR DOCTORS</div>
+                            <div class="value-body">
+                                <ul>
+                                    <li><strong>認知負荷の軽減:</strong> 複雑な経過を瞬時にサマライズ。</li>
+                                    <li><strong>教育と学習:</strong> 最新ガイドラインとの照合サポート。</li>
+                                    <li><strong>時間の創出:</strong> 患者との対話時間、研究時間の確保。</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="value-row">
+                            <div class="value-head">FOR MANAGEMENT</div>
+                            <div class="value-body">
+                                <ul>
+                                    <li><strong>リスク管理:</strong> 記載漏れ・ミスの自動検知。</li>
+                                    <li><strong>採用ブランディング:</strong> 「AI先進病院」としての地位確立。</li>
+                                    <li><strong>収益最適化:</strong> DPCコーディング支援による適正請求。</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Security (Local) -->
+        <section id="security" class="lab-section bg-contrast">
+            <div class="section-label text-white">04 / SECURITY</div>
+            <div class="lab-grid text-white">
+                <div class="grid-title animate-on-scroll">
+                    <h2>院内完結型の<br>セキュリティ</h2>
+                </div>
+                <div class="grid-content">
+                    <p class="lead-text text-white animate-on-scroll">
+                        「データが病院から一歩も出ない」という安心。<br>
+                        インターネット接続すら不要な、究極のプライバシー環境。
+                    </p>
+                    <div class="security-diagram">
+                        <div class="sec-point animate-on-scroll">
+                            <h4>Air-Gapped (完全隔離)</h4>
+                            <p class="text-gray">物理的に外部ネットワークから遮断された環境で動作。<br>ハッキングリスクを物理レベルで排除。</p>
+                        </div>
+                        <div class="sec-point animate-on-scroll delay-1">
+                            <h4>Data Sovereignty (主権)</h4>
+                            <p class="text-gray">外部AIの学習にデータが使われることはありません。<br>データは100%、貴院の管理下に。</p>
+                        </div>
+                        <div class="sec-point animate-on-scroll delay-2">
+                            <h4>Compliance (法令遵守)</h4>
+                            <p class="text-gray">個人情報保護法上の「委託」スキームを採用。<br>3省2ガイドラインに準拠。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Deployment Options (Table) -->
+        <section id="deployment" class="lab-section">
+            <div class="section-label">05 / DEPLOYMENT</div>
+            <div class="lab-grid">
+                <div class="grid-title animate-on-scroll">
+                    <h2>導入形態</h2>
+                    <p class="jp-sub">規模とポリシーに合わせた3つの選択肢</p>
+                </div>
+                <div class="grid-content">
+                    <div class="deployment-table-wrapper animate-on-scroll">
+                        <table class="lab-table">
+                            <thead>
+                                <tr>
+                                    <th>Tier</th>
+                                    <th>Edge On-Premise</th>
+                                    <th>Domestic Private Cloud</th>
+                                    <th>Hybrid Cloud (VPC)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="row-head">Target</td>
+                                    <td>小〜中規模病院・研究室</td>
+                                    <td>大規模・準公立病院</td>
+                                    <td>先進的な大規模病院</td>
+                                </tr>
+                                <tr>
+                                    <td class="row-head">Feature</td>
+                                    <td><strong>究極の秘匿性</strong><br>完全オフライン運用</td>
+                                    <td><strong>法規制遵守と拡張性</strong><br>国内DC・閉域網接続</td>
+                                    <td><strong>既存インフラ活用</strong><br>院内VPCでセキュア利用</td>
+                                </tr>
+                                <tr>
+                                    <td class="row-head">System</td>
+                                    <td>Mac Studio / NVIDIA DGX</td>
+                                    <td>国産データセンター / GPUサーバー</td>
+                                    <td>AWS / Azure / Google Cloud</td>
+                                </tr>
+                                <tr>
+                                    <td class="row-head">Network</td>
+                                    <td>No Internet</td>
+                                    <td>Closed Network / Private VPN</td>
+                                    <td>Private VPN</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="table-note animate-on-scroll">※ Step 0の「インフラ診断」にて、貴院に最適な構成をご提案します。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Roadmap -->
+        <section class="lab-section no-border">
+            <div class="section-label">06 / ROADMAP</div>
+            <div class="lab-grid">
+                <div class="grid-title animate-on-scroll">
+                    <h2>導入プロセス</h2>
+                </div>
+                <div class="grid-content">
+                    <div class="step-list">
+                        <div class="step-item animate-on-scroll">
+                            <span class="step-num">00</span>
+                            <div class="step-detail">
+                                <h4>インフラ診断</h4>
+                                <p>既存環境との適合性を専門エンジニアが診断。</p>
+                            </div>
+                        </div>
+                        <div class="step-item animate-on-scroll delay-1">
+                            <span class="step-num">01</span>
+                            <div class="step-detail">
+                                <h4>トライアル導入 (PoC)</h4>
+                                <p>特定診療科での精度検証。</p>
+                            </div>
+                        </div>
+                        <div class="step-item animate-on-scroll delay-2">
+                            <span class="step-num">02</span>
+                            <div class="step-detail">
+                                <h4>全部署展開</h4>
+                                <p>病院全体の業務効率化へ水平展開。</p>
+                            </div>
+                        </div>
+                        <div class="step-item animate-on-scroll delay-3">
+                            <span class="step-num">03</span>
+                            <div class="step-detail">
+                                <h4>データ利活用 (Option)</h4>
+                                <p>認定事業者を通じたRWD活用が可能。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Contact Form -->
+        <section id="contact" class="lab-section">
+            <div class="section-label">07 / CONTACT</div>
+            <div class="lab-grid">
+                <div class="grid-title animate-on-scroll">
+                    <h2>お問い合わせ</h2>
+                    <p class="jp-sub">導入診断・デモのご依頼</p>
+                </div>
+                <div class="grid-content animate-on-scroll">
+                    <p class="lead-text">
+                        Genshi Engineの導入、セキュリティ詳細、トライアルについては<br>
+                        下記より専用フォームにてお問い合わせください。
+                    </p>
+                    <div class="hero-cta">
+                        <a href="contact_hospital.html" class="btn-lab-primary large">お問い合わせフォームへ</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="lab-footer">
+            <div class="footer-inner">
+                <div class="footer-info animate-on-scroll">
+                    <div class="footer-col">
+                        <h4>GENSHI AI</h4>
+                        <p>Medical Local LLM Engine</p>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Links</h4>
+                        <a href="pharma.html">For Pharma & Data Partners -></a>
+                    </div>
+                    <div class="footer-col copyright">
+                        &copy; 2025 Genshi AI.
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Scroll Animation Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+
+                        // Optional: Stop observing once visible to run animation only once
+                        // observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const animateElements = document.querySelectorAll('.animate-on-scroll');
+            animateElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+
+</html>
