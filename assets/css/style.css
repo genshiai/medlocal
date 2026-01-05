@@ -279,6 +279,15 @@ h4 {
     color: #999;
     margin-bottom: 10px;
     letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.card-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
 }
 
 .lab-card h3 {
@@ -422,10 +431,10 @@ h4 {
     height: 100%;
     object-fit: cover;
     filter: grayscale(100%);
-    transition: filter 0.5s;
+    transition: filter 1s ease-out 0.5s;
 }
 
-.img-side img:hover {
+.img-side.animate-on-scroll.visible img {
     filter: grayscale(0%);
 }
 
@@ -441,6 +450,11 @@ h4 {
     height: 100%;
     object-fit: cover;
     filter: grayscale(100%);
+    transition: filter 1s ease-out 0.5s;
+}
+
+.solution-hero-img.animate-on-scroll.visible img {
+    filter: grayscale(0%);
 }
 
 /* Animations */
@@ -797,4 +811,465 @@ h4 {
 
 .organic-footer a:hover {
     text-decoration: underline;
+}
+
+/* ===============================================
+   MedLocal LP Enhancement Styles
+   =============================================== */
+
+/* Context Callout Box */
+.context-callout {
+    background: #f8f9fa;
+    border-left: 4px solid var(--color-accent);
+    padding: 30px;
+    margin-bottom: 40px;
+    border-radius: 0 8px 8px 0;
+}
+
+.context-callout h3 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.context-callout p {
+    font-size: 1rem;
+    color: #444;
+    line-height: 1.8;
+}
+
+/* Badge */
+.badge {
+    background: var(--color-accent);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.badge-important {
+    background: var(--color-accent);
+}
+
+/* AI Paradox Diagram */
+.paradox-diagram {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 20px;
+    align-items: center;
+    margin: 30px 0;
+}
+
+.paradox-box {
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.paradox-box-general {
+    background: #e8f4ff;
+}
+
+.paradox-box-medical {
+    background: #f5f5f5;
+}
+
+.paradox-box strong {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.paradox-box span {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.paradox-divider {
+    font-size: 2rem;
+    color: #ccc;
+}
+
+@media (max-width: 900px) {
+    .paradox-diagram {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .paradox-divider {
+        display: none;
+    }
+}
+
+/* Timeline Roadmap */
+.timeline-roadmap {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    padding-top: 40px;
+}
+
+.timeline-connector {
+    position: absolute;
+    top: 70px;
+    left: 5%;
+    right: 5%;
+    height: 3px;
+    background: linear-gradient(
+        to right,
+        var(--color-accent) 0%,
+        var(--color-accent) 75%,
+        #ddd 75%,
+        #ddd 100%
+    );
+    z-index: 1;
+}
+
+.roadmap-step {
+    position: relative;
+    padding: 0 10px;
+    text-align: center;
+    z-index: 2;
+}
+
+.step-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.step-number {
+    width: 60px;
+    height: 60px;
+    background: var(--color-white);
+    border: 3px solid var(--color-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--color-accent);
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+.roadmap-step:hover .step-number {
+    background: var(--color-accent);
+    color: var(--color-white);
+    transform: scale(1.1);
+}
+
+.step-duration {
+    font-size: 0.75rem;
+    color: #888;
+    background: #f5f5f5;
+    padding: 4px 12px;
+    border-radius: 12px;
+}
+
+.step-content {
+    text-align: left;
+    padding: 20px;
+    background: #fafafa;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    min-height: 180px;
+}
+
+.step-content h4 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: var(--color-black);
+}
+
+.step-desc {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.step-deliverables {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.step-deliverables li {
+    font-size: 0.8rem;
+    color: #777;
+    padding: 4px 0 4px 18px;
+    position: relative;
+}
+
+.step-deliverables li::before {
+    content: "\2192";
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+}
+
+/* Optional step styling */
+.roadmap-optional .step-number {
+    border-style: dashed;
+    border-color: #bbb;
+    color: #888;
+}
+
+.roadmap-optional .step-content {
+    background: transparent;
+    border-style: dashed;
+    border-color: #ccc;
+}
+
+/* Timeline Mobile */
+@media (max-width: 900px) {
+    .timeline-roadmap {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding-left: 60px;
+        padding-top: 0;
+    }
+
+    .timeline-connector {
+        top: 0;
+        bottom: 0;
+        left: 30px;
+        right: auto;
+        width: 3px;
+        height: auto;
+        background: linear-gradient(
+            to bottom,
+            var(--color-accent) 0%,
+            var(--color-accent) 75%,
+            #ddd 75%,
+            #ddd 100%
+        );
+    }
+
+    .roadmap-step {
+        text-align: left;
+        padding: 0;
+    }
+
+    .step-marker {
+        position: absolute;
+        left: -60px;
+        top: 0;
+        margin-bottom: 0;
+    }
+
+    .step-content {
+        min-height: auto;
+    }
+}
+
+/* Value Cards Enhanced */
+.value-card {
+    background: #f8fbff;
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 20px;
+}
+
+.value-card-mgmt {
+    background: #f8f8f8;
+}
+
+.value-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 18px;
+}
+
+.value-item:last-child {
+    margin-bottom: 0;
+}
+
+.value-tag {
+    background: var(--color-accent);
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-right: 15px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.value-tag-mgmt {
+    background: #333;
+}
+
+.value-item-content strong {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.value-item-content span {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.value-head-enhanced {
+    color: var(--color-accent);
+    margin-bottom: 5px;
+}
+
+.value-head-subtitle {
+    display: block;
+    font-size: 0.7rem;
+    color: #888;
+    margin-top: 5px;
+    font-weight: 400;
+}
+
+/* Security Visual Diagram */
+.security-visual {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 40px;
+}
+
+.network-diagram {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.network-node {
+    flex: 1;
+    padding: 20px;
+}
+
+.network-node-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: #888;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.network-node strong {
+    display: block;
+    color: #fff;
+}
+
+.network-node span {
+    font-size: 0.8rem;
+}
+
+.node-medlocal {
+    background: rgba(0, 64, 133, 0.2);
+    border: 2px solid var(--color-accent);
+    border-radius: 8px;
+}
+
+.node-medlocal strong {
+    color: var(--color-accent);
+}
+
+.node-internet {
+    opacity: 0.4;
+}
+
+.connection {
+    flex: 0 0 100px;
+    position: relative;
+}
+
+.connection-line {
+    border-top: 2px dashed var(--color-accent);
+    width: 100%;
+}
+
+.connection-label {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-accent);
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    white-space: nowrap;
+}
+
+.connection-blocked .connection-line {
+    border-top: 3px solid #666;
+}
+
+.connection-blocked .connection-x {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #888;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.connection-blocked .connection-label {
+    background: #444;
+    color: #aaa;
+    top: 10px;
+}
+
+@media (max-width: 900px) {
+    .network-diagram {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .connection {
+        transform: rotate(90deg);
+        flex: 0 0 60px;
+    }
+}
+
+/* Hero Value List */
+.hero-value-list {
+    list-style: none;
+    margin: 30px 0;
+    padding: 0;
+}
+
+.hero-value-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+}
+
+.hero-value-list .check {
+    color: var(--color-accent);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Enhanced Lab Card Hover */
+.lab-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border-color: var(--color-accent);
+}
+
+/* Improved Lead Text */
+.lead-text-enhanced {
+    font-size: 1.3rem;
+    margin-bottom: 50px;
+    line-height: 1.9;
 }
