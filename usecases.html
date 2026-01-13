@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>医療現場の課題と解決策 - MedLocal by GENSHI AI</title>
+    <meta name="description" content="医療現場が抱える6つの課題とMedLocalによる解決策。退院サマリー、紹介状、院内文書検索、OCR、議事録、薬剤アラートの自動化事例。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600;700&family=Noto+Sans+JP:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body class="lab-theme">
+
+    <div class="lab-container">
+        <!-- Header -->
+        <header class="lab-header">
+            <div class="lab-logo">
+                <a href="index.html" class="logo-text" style="display:block; color:inherit;">MedLocal</a>
+                <span class="logo-sub">医療特化型ローカルLLM</span>
+            </div>
+            <nav class="lab-nav">
+                <a href="index.html">トップ</a>
+                <a href="usecases.html" class="nav-accent">事例・ユースケース</a>
+                <a href="pharma.html">製薬企業向け</a>
+                <a href="contact_hospital.html" class="nav-contact">お問い合わせ</a>
+            </nav>
+        </header>
+
+        <!-- Hero -->
+        <section class="lab-hero">
+            <div class="hero-grid">
+                <div class="hero-left animate-on-scroll">
+                    <h1 class="hero-jp" style="font-size: 3.5rem;">医療現場の<br>6つの課題と<br>解決策</h1>
+                    <p class="hero-en">REAL STORIES FROM THE FRONTLINE</p>
+                </div>
+                <div class="hero-right animate-on-scroll delay-1">
+                    <p class="hero-desc">
+                        医師は1日の業務時間の約40%を「書類作成」に費やしています。<br>
+                        現場のリアルな声と、MedLocalが提供する<br>
+                        具体的な解決策をご紹介します。
+                    </p>
+                    <div class="usecase-nav">
+                        <a href="#pain1" class="usecase-nav-item">退院サマリー</a>
+                        <a href="#pain2" class="usecase-nav-item">紹介状</a>
+                        <a href="#pain3" class="usecase-nav-item">院内知識検索</a>
+                        <a href="#pain4" class="usecase-nav-item">紙文書OCR</a>
+                        <a href="#pain5" class="usecase-nav-item">会議議事録</a>
+                        <a href="#pain6" class="usecase-nav-item">薬剤アラート</a>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image-strip animate-on-scroll delay-2">
+                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1600&h=400&fit=crop" alt="Medical Team">
+            </div>
+        </section>
+
+        <!-- Pain 1: 退院サマリー -->
+        <section id="pain1" class="lab-section usecase-section">
+            <div class="section-label">PAIN 01</div>
+            <div class="lab-grid">
+                <div class="grid-title animate-on-scroll">
+                    <h2>退院サマリー<br>作成の地獄</h2>
+                    <p class="jp-sub">複雑症例で2時間以上</p>
+                </div>
+                <div class="grid-content">
+                    <!-- Story Part -->
+                    <div class="usecase-story animate-on-scroll">
+                        <div class="story-header">
+                            <span class="story-label">現場のリアル</span>
+                            <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=300&fit=crop" alt="Doctor at computer" class="story-image">
+                        </div>
+                        <div class="story-content">
+                            <p>ある大学病院の消化器内科。<strong>佐藤医師（35歳）</strong>は、今日も21時を回った病院で退院サマリーと格闘しています。</p>
+                            <p>担当患者の田中さん（68歳）は、急性膵炎で入院してから3ヶ月。その間、ERCP（内視鏡的膵管造影）を2回、抗生剤は3回変更、一時は敗血症で救命救急病棟に転棟し、リハビリを経てようやく明日退院です。</p>
+                            <p>佐藤医師の前には、<strong>3ヶ月分・約2,000行の診療記録</strong>が広がっています。</p>
+                            <blockquote class="doctor-quote">
+                                「あの日の熱発の原因は何だったか…」<br>
+                                「抗生剤をセフトリアキソンからメロペネムに変えたのはいつだったか…」
+                            </blockquote>
+                            <p>電子カルテを行ったり来たりしながら、1,000文字程度のサマリーに凝縮する作業。<strong>この1件だけで2時間</strong>かかることも珍しくありません。</p>
+                        </div>
+                    </div>
+
+                    <!-- Pain Structure -->
+                    <div class="pain-structure animate-on-scroll">
+                        <h3>ペインの構造</h3>
+                        <div class="pain-points">
+                            <div class="pain-point">
+                                <span class="pain-number">1</span>
+                                <div class="pain-detail">
+                                    <strong>情報の散在</strong>
+                                    <p>診療記録は時系列で積み上がるため、「膵炎の治療経過」「感染症の治療経過」「リハビリの経過」といったテーマ別の情報が混在している。</p>
+                                </div>
+                            </div>
+                            <div class="pain-point">
+                                <span class="pain-number">2</span>
+                                <div class="pain-detail">
+                                    <strong>取捨選択の難しさ</strong>
+                                    <p>2,000行から本質的な500行を選び、さらに1,000文字に圧縮する「要約力」が必要。</p>
+                                </div>
+                            </div>
+                            <div class="pain-point">
+                                <span class="pain-number">3</span>
+                                <div class="pain-detail">
+                                    <strong>品質担保の困難</strong>
+                                    <p>チェックする上司も同様に多忙であり、十分なレビューが行われないまま完成してしまう。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Solution -->
+                    <div class="usecase-solution animate-on-scroll">
+                        <div class="solution-header">
+                            <span class="solution-label">MedLocalの解決策</span>
+                        </div>
+                        <h3>退院サマリー自動生成＋根拠引用機能</h3>
+                        <p class="solution-desc">電子カルテに蓄積された診療記録（数百〜数千行）をAIが解析し、退院サマリーのドラフトを自動生成します。医師は「ゼロから書く」のではなく「AIの案を確認・修正する」だけで完了できます。</p>
+
+                        <div class="solution-features">
+                            <div class="feature-item">
+                                <strong>根拠引用機能（Citation）</strong>
+                                <p>サマリーの各文章に「根拠ボタン」を実装。クリックすると、その記述がどのカルテ記事から抽出されたかをハイライト表示します。「AIが勝手に書いた」という不安を解消し、チェック時間を大幅に短縮します。</p>
+                            </div>
+                            <div class="feature-item">
+                                <strong>医療特化LLM</strong>
+                                <p>一般的なChatGPTではなく、医学論文・診療ガイドラインで追加学習したモデルを使用。医療用語の理解精度が高く、「疑い病名」と「確定病名」の区別、略語の正確な展開などが可能です。</p>
+                            </div>
+                        </div>
+
+                        <div class="solution-result">
+                            <div class="result-before">
+                                <span class="result-label">従来</span>
+                                <span class="result-value">120分</span>
+                            </div>
+                            <div class="result-arrow">→</div>
+                            <div class="result-after">
+                                <span class="result-label">MedLocal導入後</span>
+                                <span class="result-value">15-30分</span>
+                                <span class="result-note">AI生成30秒 + 確認・修正</span>
+                            </div>
+                            <div class="result-reduction">
+                                <strong>最大80%削減</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pain 2: 紹介状 -->
+        <section id="pain2" class="lab-section usecase-section bg-alt">
+            <div class="section-label">PAIN 02</div>
+            <div class="lab-grid">
+                <div class="grid-title animate-on-scroll">
+                    <h2>紹介状作成の<br>プレッシャー</h2>
+                    <p class="jp-sub">転記ミスが患者安全に直結</p>
+                </div>
+                <div class="grid-content">
+                    <!-- Story Part -->
+                    <div class="usecase-story animate-on-scroll">
+                        <div class="story-header">
+                            <span class="story-label">現場のリアル</span>
+                            <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=400&h=300&fit=crop" alt="Medical documents" class="story-image">
+                        </div>
+                        <div class="story-content">
+                            <p>循環器内科の<strong>山田医師</strong>は、心不全で入院中の鈴木さん（75歳）を、リハビリ専門の回復期病院へ転院させる準備をしています。相手病院の医師に「これまでの治療内容」と「今後の継続課題」を伝える紹介状を作成しなければなりません。</p>
+                            <p>鈴木さんは心不全の他に、<strong>糖尿病、慢性腎臓病、高血圧</strong>を併存しています。現在の処方薬は<strong>12種類</strong>。直近の検査値、投薬の調整経緯、今後注意すべきポイント…。これらを漏れなく、かつ相手医師が読みやすい形式でまとめる必要があります。</p>
+                            <blockquote class="doctor-quote">
+                                「利尿剤の増量余地がまだあります」<br>
+                                「腎機能悪化時はこの薬を減量してください」
+                            </blockquote>
+                            <p>といった引き継ぎ事項が欠落すれば、患者の状態悪化を招きかねません。しかし、<strong>1件の紹介状作成に30分〜1時間</strong>かかる現状では、十分な記載をする時間的余裕がありません。</p>
+                        </div>
+                    </div>
+
+                    <!-- Pain Structure -->
+                    <div class="pain-structure animate-on-scroll">
+                        <h3>ペインの構造</h3>
+                        <div class="pain-points">
+                            <div class="pain-point">
+                                <span class="pain-number">1</span>
+                                <div class="pain-detail">
+                                    <strong>転記作業の煩雑さ</strong>
+                                    <p>検査値・処方内容を電子カルテから紹介状フォーマットに転記する作業が非効率。</p>
+                                </div>
+                            </div>
+                            <div class="pain-point">
+                                <span class="pain-number">2</span>
+                                <div class="pain-detail">
+                                    <strong>構造化の難しさ</strong>
+                                    <p>相手医師が読みやすい形式（SBAR形式等）にまとめるには経験と時間が必要。</p>
+                                </div>
+                            </div>
+                            <div class="pain-point">
+                                <span class="pain-number">3</span>
+                                <div class="pain-detail">
+                                    <strong>ミスの許容度ゼロ</strong>
+                                    <p>転記ミスは患者安全に直結。しかしダブルチェックの時間も限られる。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Solution -->
+                    <div class="usecase-solution animate-on-scroll">
+                        <div class="solution-header">
+                            <span class="solution-label">MedLocalの解決策</span>
+                        </div>
+                        <h3>紹介状自動生成</h3>
+                        <p class="solution-desc">転院・逆紹介に必要な情報（現病歴、検査値推移、処方内容、今後のフォロー方針）を電子カルテから自動抽出し、紹介状フォーマットに整形します。</p>
+
+                        <div class="solution-features">
+                            <div class="feature-item">
+                                <strong>SBAR構造化出力</strong>
+                                <p>Situation（状況）・Background（背景）・Assessment（評価）・Recommendation（推奨）のフレームワークに基づいた構造化。相手医師が「読みやすい」と感じる紹介状を生成します。</p>
+                            </div>
+                            <div class="feature-item">
+                                <strong>検査値トレンド抽出</strong>
+                                <p>単発の数値ではなく、入院中の推移（例：「eGFRは入院時45→現在38と低下傾向」）を自動で記載し、継続治療に必要な情報を提供します。</p>
+                            </div>
+                        </div>
+
+                        <div class="solution-result">
+                            <div class="result-before">
+                                <span class="result-label">従来</span>
+                                <span class="result-value">30-60分</span>
+                            </div>
+                            <div class="result-arrow">→</div>
+                            <div class="result-after">
+                                <span class="result-label">MedLocal導入後</span>
+                                <span class="result-value">5分</span>
+                                <span class="result-note">転記ミスゼロ</span>
+                            </div>
+                            <div class="result-reduction">
+                                <strong>83%削減</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pain 3: 院内知識の死蔵化 -->
+        <section id="pain3" class="lab-section usecase-section">
+            <div class="section-label">PAIN 03</div>
+            <div class="lab-grid">
+                <div class="grid-title animate-on-scroll">
+                    <h2>院内知識の<br>死蔵化</h2>
+                    <p class="jp-sub">貴重な経験が検索できない</p>
+                </div>
+                <div class="grid-content">
+                    <!-- Story Part -->
+                    <div class="usecase-story animate-on-scroll">
+                        <div class="story-header">
+                            <span class="story-label">現場のリアル</span>
+                            <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=400&h=300&fit=crop" alt="Medical conference" class="story-image">
+                        </div>
+                        <div class="story-content">
+                            <p>大学病院の血液内科カンファレンス。研修医の<strong>高橋医師</strong>が、稀少な血液疾患の症例を担当することになりました。「5年前にも似たような症例があったはず」と上級医は言いますが、誰もその詳細を覚えていません。</p>
+                            <p>過去の症例報告、学会発表の抄録、診療科で作成したマニュアル、これらは確かに存在しますが、<strong>部門サーバーの奥深くに眠っています</strong>。</p>
+                            <blockquote class="doctor-quote">
+                                「あのフォルダだったか、いや別の共有ドライブだったか…」
+                            </blockquote>
+                            <p>ファイル名も曖昧で、検索してもヒットしません。結局、高橋医師は一から文献検索を始めます。実は院内に「完璧な参考症例」があったにもかかわらず、それを見つけられずに<strong>車輪の再発明</strong>をする。このような非効率が、毎日のように発生しています。</p>
+                        </div>
+                    </div>
+
+                    <!-- Pain Structure -->
+                    <div class="pain-structure animate-on-scroll">
+                        <h3>ペインの構造</h3>
+                        <div class="pain-points">
+                            <div class="pain-point">
+                                <span class="pain-number">1</span>
+                                <div class="pain-detail">
+                                    <strong>検索性の欠如</strong>
+                                    <p>ファイル名や保存場所が統一されておらず、全文検索も機能しない。</p>
+                                </div>
+                            </div>
+                            <div class="pain-point">
+                                <span class="pain-number">2</span>
+                                <div class="pain-detail">
+                                    <strong>暗黙知の消失</strong>
+                                    <p>ベテラン医師の退職とともに、貴重な経験・知見が失われる。</p>
+                                </div>
+                            </div>
+                            <div class="pain-point">
+                                <span class="pain-number">3</span>
+                                <div class="pain-detail">
+                                    <strong>学習効率の低下</strong>
+                                    <p>後進が過去の成功事例・失敗事例から学ぶ機会が限られる。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Solution -->
+                    <div class="usecase-solution animate-on-scroll">
+                        <div class="solution-header">
+                            <span class="solution-label">MedLocalの解決策</span>
+                        </div>
+                        <h3>院内文書検索（RAG）</h3>
+                        <p class="solution-desc">病院内に蓄積された過去文書（症例報告、学会抄録、マニュアル、プロトコル）をAIが学習し、自然言語での質問に対して関連文書を即座に検索・要約します。</p>
+
+                        <div class="solution-features">
+                            <div class="feature-item">
+                                <strong>RAG（Retrieval Augmented Generation）</strong>
+                                <p>質問文をベクトル化し、類似度の高い文書を検索した上で、その文書を参照しながら回答を生成。病院固有の「秘伝のタレ」を活用できます。</p>
+                            </div>
+                            <div class="feature-item">
+                                <strong>オンプレミスベクトルDB</strong>
+                                <p>文書のベクトル化データも院内サーバーに保存。外部への情報流出リスクをゼロにしながら、高速検索を実現します。</p>
+                            </div>
+                        </div>
+
+                        <div class="solution-result-simple">
+                            <strong>「5年前の類似症例」を30秒で発見</strong>
+                            <p>新人医師の立ち上がり時間を短縮し、組織知の継承を促進します。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pain 4: 紙文書のデジタル化 -->
+        <section id="pain4" class="lab-section usecase-section bg-alt">
+            <div class="section-label">PAIN 04</div>
+            <div class="lab-grid">
+                <div class="grid-title animate-on-scroll">
+                    <h2>紙文書の<br>デジタル化障壁</h2>
+                    <p class="jp-sub">手入力ミスが医療安全リスクに</p>
+                </div>
+                <div class="grid-content">
+                    <!-- Story Part -->
+                    <div class="usecase-story animate-on-scroll">
+                        <div class="story-header">
+                            <span class="story-label">現場のリアル</span>
+                            <img src="https://images.unsplash.com/photo-1586281380117-5a60ae2050cc?w=400&h=300&fit=crop" alt="Paper documents" class="story-image">
+                        </div>
+                        <div class="story-content">
+                            <p>地域の中核病院である○○総合病院。他院からの紹介患者を受け入れる際、紹介状は<strong>紙で届くことがほとんど</strong>です。スキャナーでPDF化して電子カルテに取り込みますが、それは「画像」として保存されるだけ。内容を検索したり、データとして活用したりすることはできません。</p>
+                            <p>医療事務の<strong>渡辺さん</strong>は、毎日届く紹介状の内容を目で読み、必要な情報（既往歴、アレルギー、現在の処方）を電子カルテの所定欄に手入力しています。</p>
+                            <blockquote class="doctor-quote">
+                                1件あたり15分。1日30件で7時間以上。
+                            </blockquote>
+                            <p>さらに問題なのは、手入力によるミスです。「ペニシリンアレルギー」の記載を見落とし、入力漏れが発生すれば、その患者にペニシリン系抗生剤が処方されるリスクがあります。紙からデジタルへの「翻訳」は、単なる事務作業ではなく、<strong>患者安全に関わる重要工程</strong>なのです。</p>
+                        </div>
+                    </div>
+
+                    <!-- Pain Structure -->
+                    <div class="pain-structure animate-on-scroll">
+                        <h3>ペインの構造</h3>
+                        <div class="pain-points">
+                            <div class="pain-point">
+                                <span class="pain-number">1</span>
+                                <div class="pain-detail">
+                                    <strong>OCR精度の限界</strong>
+                                    <p>一般的なOCRでは医療用語・手書き文字の認識精度が不十分。</p>
+                                </div>
+                            </div>
+                            <div class="pain-point">
+                                <span class="pain-number">2</span>
+                                <div class="pain-detail">
+                                    <strong>構造化の壁</strong>
+                                    <p>テキスト化できても「これは既往歴」「これはアレルギー」と分類する必要がある。</p>
+                                </div>
+                            </div>
+                            <div class="pain-point">
+                                <span class="pain-number">3</span>
+                                <div class="pain-detail">
+                                    <strong>品質管理の負荷</strong>
+                                    <p>入力内容の正確性を担保するチェック工程がさらに時間を要する。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Solution -->
+                    <div class="usecase-solution animate-on-scroll">
+                        <div class="solution-header">
+                            <span class="solution-label">MedLocalの解決策</span>
+                        </div>
+                        <h3>OCR＋書類整理</h3>
+                        <p class="solution-desc">紙の紹介状やPDF検査結果をスキャンした瞬間、テキスト化・構造化し、電子カルテの所定フィールドへの転記原案を自動生成します。</p>
+
+                        <div class="solution-features">
+                            <div class="feature-item">
+                                <strong>医療特化OCR</strong>
+                                <p>医療用語辞書を組み込み、一般OCRでは認識困難な専門用語・略語を高精度で認識。手書き処方箋の文字認識にも対応します。</p>
+                            </div>
+                            <div class="feature-item">
+                                <strong>構造化AI</strong>
+                                <p>テキスト化した内容から「これは既往歴」「これはアレルギー」「これは処方」と自動分類し、電子カルテの該当欄に振り分けます。</p>
+                            </div>
+                        </div>
+
+                        <div class="solution-result">
+                            <div class="result-before">
+                                <span class="result-label">従来</span>
+                                <span class="result-value">15分/件</span>
+                            </div>
+                            <div class="result-arrow">→</div>
+                            <div class="result-after">
+                                <span class="result-label">MedLocal導入後</span>
+                                <span class="result-value">2分/件</span>
+                                <span class="result-note">入力ミスリスク低減</span>
+                            </div>
+                            <div class="result-reduction">
+                                <strong>87%削減</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pain 5: 会議議事録 -->
+        <section id="pain5" class="lab-section usecase-section">
+            <div class="section-label">PAIN 05</div>
+            <div class="lab-grid">
+                <div class="grid-title animate-on-scroll">
+                    <h2>会議議事録の<br>作成負担</h2>
+                    <p class="jp-sub">法令義務なのに時間がない</p>
+                </div>
+                <div class="grid-content">
+                    <!-- Story Part -->
+                    <div class="usecase-story animate-on-scroll">
+                        <div class="story-header">
+                            <span class="story-label">現場のリアル</span>
+                            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&h=300&fit=crop" alt="Medical meeting" class="story-image">
+                        </div>
+                        <div class="story-content">
+                            <p>毎月第2水曜日は医療安全委員会の日。院内で発生したインシデント・アクシデントを分析し、再発防止策を議論する重要な会議です。<strong>法律により、議事録の作成・保管が義務付けられています</strong>。</p>
+                            <p>記録係を任されているのは、3年目看護師の<strong>加藤さん</strong>。1時間半の会議中、必死にメモを取りますが、医師たちの専門的な議論についていくのがやっとです。</p>
+                            <blockquote class="doctor-quote">
+                                会議後、メモを整理して議事録にまとめる作業にさらに2時間。<br>
+                                本来のケア業務に充てるべき時間が削られます。
+                            </blockquote>
+                            <p>問題は時間だけではありません。専門用語の聞き間違い、発言者の取り違え、議論のニュアンスの欠落。議事録の品質は、後日の監査対応や医療訴訟の際の証拠として重要ですが、現状では十分な品質担保が困難です。</p>
+                        </div>
+                    </div>
+
+                    <!-- Pain Structure -->
+                    <div class="pain-structure animate-on-scroll">
+                        <h3>ペインの構造</h3>
+                        <div class="pain-points">
+                            <div class="pain-point">
+                                <span class="pain-number">1</span>
+                                <div class="pain-detail">
+                                    <strong>リアルタイム記録の困難</strong>
+                                    <p>議論のスピードに手書き・タイピングが追いつかない。</p>
+                                </div>
+                            </div>
+                            <div class="pain-point">
+                                <span class="pain-number">2</span>
+                                <div class="pain-detail">
+                                    <strong>専門用語の壁</strong>
+                                    <p>一般的な音声認識ツールでは医療用語の認識精度が低い。</p>
+                                </div>
+                            </div>
+                            <div class="pain-point">
+                                <span class="pain-number">3</span>
+                                <div class="pain-detail">
+                                    <strong>二重業務の発生</strong>
+                                    <p>メモ取りと内容理解の両立が困難で、会議への参加度が下がる。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Solution -->
+                    <div class="usecase-solution animate-on-scroll">
+                        <div class="solution-header">
+                            <span class="solution-label">MedLocalの解決策</span>
+                        </div>
+                        <h3>会議議事録自動生成</h3>
+                        <p class="solution-desc">医療安全委員会、感染対策委員会、症例検討会などの音声を録音し、医療用語に強いAIが議事録を自動生成します。</p>
+
+                        <div class="solution-features">
+                            <div class="feature-item">
+                                <strong>医療用語特化音声認識</strong>
+                                <p>「エムアールエスエー」を「MRSA」に、「エスエービーアール」を「SBAR」に正確に変換。専門的な議論を正しくテキスト化します。</p>
+                            </div>
+                            <div class="feature-item">
+                                <strong>話者分離</strong>
+                                <p>複数参加者の発言を識別し、「○○部長：〜」「△△師長：〜」と話者を明記した議事録を生成します。</p>
+                            </div>
+                        </div>
+
+                        <div class="solution-result">
+                            <div class="result-before">
+                                <span class="result-label">従来</span>
+                                <span class="result-value">2時間</span>
+                            </div>
+                            <div class="result-arrow">→</div>
+                            <div class="result-after">
+                                <span class="result-label">MedLocal導入後</span>
+                                <span class="result-value">15分</span>
+                                <span class="result-note">確認・修正のみ</span>
+                            </div>
+                            <div class="result-reduction">
+                                <strong>87%削減</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pain 6: 薬剤・検査値チェック -->
+        <section id="pain6" class="lab-section usecase-section bg-alt">
+            <div class="section-label">PAIN 06</div>
+            <div class="lab-grid">
+                <div class="grid-title animate-on-scroll">
+                    <h2>薬剤・検査値<br>チェックの認知負荷</h2>
+                    <p class="jp-sub">疲労時の「うっかりミス」</p>
+                </div>
+                <div class="grid-content">
+                    <!-- Story Part -->
+                    <div class="usecase-story animate-on-scroll">
+                        <div class="story-header">
+                            <span class="story-label">現場のリアル</span>
+                            <img src="https://images.unsplash.com/photo-1631549916768-4119b2e5f926?w=400&h=300&fit=crop" alt="Night shift doctor" class="story-image">
+                        </div>
+                        <div class="story-content">
+                            <p>救急外来。<strong>深夜2時</strong>、重症肺炎の患者に抗生剤を投与しようとしている当直医の<strong>伊藤医師</strong>。疲労でぼんやりする頭の中で、処方量を計算しています。</p>
+                            <blockquote class="doctor-quote">
+                                「この患者の腎機能は…eGFRが35か。通常量だと蓄積するな。<br>
+                                減量が必要だ。えーと、添付文書には何て書いてあったか…」
+                            </blockquote>
+                            <p>電子カルテは大量の情報を表示しますが、「この処方で本当に大丈夫か」を能動的に教えてはくれません。腎機能低下患者への禁忌薬、相互作用のある薬剤の組み合わせ、これらのチェックは医師の記憶と注意力に依存しています。</p>
+                            <p>深夜や連続勤務の後、<strong>注意力が低下した状態で複雑な判断</strong>を強いられる。ここに「うっかりミス」が入り込む余地があります。医療事故の多くは、能力不足ではなく、<strong>システムとしての安全網の欠如</strong>に起因しています。</p>
+                        </div>
+                    </div>
+
+                    <!-- Pain Structure -->
+                    <div class="pain-structure animate-on-scroll">
+                        <h3>ペインの構造</h3>
+                        <div class="pain-points">
+                            <div class="pain-point">
+                                <span class="pain-number">1</span>
+                                <div class="pain-detail">
+                                    <strong>情報過多</strong>
+                                    <p>電子カルテには膨大な情報があるが、優先度付けがされていない。</p>
+                                </div>
+                            </div>
+                            <div class="pain-point">
+                                <span class="pain-number">2</span>
+                                <div class="pain-detail">
+                                    <strong>受動的システム</strong>
+                                    <p>現行の電子カルテは「聞かれれば答える」設計で、能動的な警告が不十分。</p>
+                                </div>
+                            </div>
+                            <div class="pain-point">
+                                <span class="pain-number">3</span>
+                                <div class="pain-detail">
+                                    <strong>認知限界</strong>
+                                    <p>人間の注意力・記憶力には限界があり、疲労時に顕著に低下する。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Solution -->
+                    <div class="usecase-solution animate-on-scroll">
+                        <div class="solution-header">
+                            <span class="solution-label">MedLocalの解決策</span>
+                        </div>
+                        <h3>検査値示唆・薬剤アラート</h3>
+                        <p class="solution-desc">処方オーダー時に、患者の最新検査値・既往歴・併用薬をAIがチェックし、注意すべきポイントを「控えめなリマインド」として提示します。</p>
+
+                        <div class="solution-features">
+                            <div class="feature-item">
+                                <strong>非侵襲的アラート</strong>
+                                <p>「診断」や「指示」ではなく、あくまで「気づきのアシスト」として設計。例：「この処方に対し、直近の腎機能低下（eGFR 35）を考慮した用量調節の検討を推奨します」医師の判断を尊重しつつ、見落としリスクを低減します。</p>
+                            </div>
+                            <div class="feature-item">
+                                <strong>コンテキスト理解</strong>
+                                <p>単純な閾値アラートではなく、患者の全体像を理解した上で、本当に注意すべきポイントのみを提示。「アラート疲れ」を防止します。</p>
+                            </div>
+                        </div>
+
+                        <div class="solution-result-simple">
+                            <strong>処方エラーの早期発見率を向上</strong>
+                            <p>特に深夜帯・疲労時の「うっかりミス」を防止し、医療安全を強化します。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="lab-section cta-section">
+            <div class="section-label">CONTACT</div>
+            <div class="lab-grid">
+                <div class="grid-title animate-on-scroll">
+                    <h2>導入のご相談</h2>
+                    <p class="jp-sub">貴院の課題をお聞かせください</p>
+                </div>
+                <div class="grid-content animate-on-scroll">
+                    <p class="lead-text">
+                        6つの課題のうち、いくつが貴院に当てはまりましたか？<br>
+                        MedLocalは、貴院の状況に合わせた導入プランをご提案します。<br>
+                        まずはお気軽にご相談ください。
+                    </p>
+                    <div class="hero-cta">
+                        <a href="contact_hospital.html" class="btn-lab-primary large">導入診断・お問い合わせ</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="lab-footer">
+            <div class="footer-inner">
+                <div class="footer-info animate-on-scroll">
+                    <div class="footer-col">
+                        <h4>GENSHI AI</h4>
+                        <p>MedLocal</p>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Links</h4>
+                        <a href="index.html">トップページ</a>
+                        <a href="pharma.html">For Pharma & Partners</a>
+                    </div>
+                    <div class="footer-col copyright">
+                        &copy; 2025 GENSHI AI
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Scroll Animation Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            const animateElements = document.querySelectorAll('.animate-on-scroll');
+            animateElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+
+</html>

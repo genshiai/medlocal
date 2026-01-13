@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedLocal - デザイン改善版 (2-Column Layout)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            /* User Specified Palette */
+            --color-accent: #A0D3D9;
+            /* Accent (Light Blue) */
+            --color-third: #F29441;
+            /* Third (Orange) */
+            --color-secondary: #F2600C;
+            /* Secondary (Dark Orange) */
+            --color-primary: #F2380F;
+            /* Primary (Red) */
+            --color-black: #0D0D0D;
+            /* Black */
+
+            /* Utils */
+            --color-text: #1a1a1a;
+            --color-text-sub: #555555;
+            --color-bg: #ffffff;
+            --color-bg-alt: #f9fafb;
+            --color-border: #e0e0e0;
+
+            --font-serif: 'Noto Serif JP', serif;
+            --font-sans: 'Noto Sans JP', sans-serif;
+
+            --spacing-section: 120px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-sans);
+            font-size: 18px;
+            /* Increased from 16px */
+            line-height: 1.9;
+            /* Increased line-height */
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: var(--font-serif);
+            color: var(--color-black);
+            line-height: 1.4;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ============================================
+           Layout Container (Matches index.html)
+           ============================================ */
+        .lab-container {
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+            border-left: 1px solid var(--color-border);
+            border-right: 1px solid var(--color-border);
+            background: #fff;
+        }
+
+        /* ============================================
+           Header
+           ============================================ */
+        .lab-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            border-bottom: 1px solid var(--color-border);
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .lab-logo {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-text {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            font-weight: 900;
+            letter-spacing: 0.05em;
+            color: var(--color-black);
+        }
+
+        .logo-sub {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-text-sub);
+        }
+
+        .lab-nav {
+            display: flex;
+            gap: 28px;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .lab-nav a:hover {
+            color: var(--color-primary);
+        }
+
+        .nav-contact {
+            background: var(--color-black);
+            color: var(--color-bg) !important;
+            padding: 12px 28px;
+            border-radius: 4px;
+        }
+
+        .nav-contact:hover {
+            background: var(--color-primary);
+        }
+
+        /* ============================================
+           Hero (2-Column Split)
+           ============================================ */
+        .lab-hero {
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 60vh;
+        }
+
+        .hero-left {
+            padding: 100px 60px;
+            /* Increased padding */
+            border-right: 1px solid var(--color-border);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-jp {
+            font-family: var(--font-serif);
+            font-size: 4.5rem;
+            /* Increased size */
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            color: var(--color-black);
+        }
+
+        .hero-en {
+            font-size: 1rem;
+            letter-spacing: 0.15em;
+            color: var(--color-text-sub);
+            margin-bottom: 48px;
+        }
+
+        .hero-right {
+            padding: 100px 60px;
+            /* Increased padding */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: var(--color-bg-alt);
+        }
+
+        .hero-desc {
+            font-size: 1.25rem;
+            /* Larger text */
+            line-height: 2;
+            margin-bottom: 40px;
+            color: var(--color-text);
+            font-weight: 500;
+        }
+
+        .hero-value-list {
+            list-style: none;
+            margin: 0 0 48px 0;
+            padding: 0;
+        }
+
+        .hero-value-list li {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 18px;
+            font-size: 1.1rem;
+            color: var(--color-text);
+            font-weight: 600;
+        }
+
+        .check-icon {
+            color: var(--color-primary);
+            width: 24px;
+            height: 24px;
+        }
+
+        .btn-lab-primary {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--color-black);
+            color: var(--color-bg);
+            padding: 20px 56px;
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            letter-spacing: 0.05em;
+            border-radius: 4px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .btn-lab-primary:hover {
+            background: var(--color-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(242, 56, 15, 0.3);
+        }
+
+        .hero-image-strip {
+            height: 360px;
+            /* Taller strip */
+            overflow: hidden;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .hero-image-strip img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(1.02);
+        }
+
+        /* ============================================
+           Section Structure (Sidebar + Split Grid)
+           ============================================ */
+        .lab-section {
+            border-bottom: 1px solid var(--color-border);
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            /* Wider sidebar */
+            min-height: 500px;
+        }
+
+        .section-label {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            padding: 40px 0;
+            text-align: center;
+            font-size: 0.95rem;
+            letter-spacing: 0.15em;
+            border-right: 1px solid var(--color-border);
+            background: #fcfcfc;
+            color: var(--color-text-sub);
+            font-weight: 600;
+        }
+
+        .lab-grid {
+            display: grid;
+            grid-template-columns: 35% 65%;
+        }
+
+        .grid-title {
+            padding: 80px 60px;
+            border-right: 1px solid var(--color-border);
+        }
+
+        .grid-title h2 {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.3;
+            color: var(--color-black);
+        }
+
+        .grid-title .jp-sub {
+            font-size: 1.1rem;
+            color: var(--color-text-sub);
+        }
+
+        .grid-content {
+            padding: 80px 60px;
+        }
+
+        .lead-text {
+            font-size: 1.25rem;
+            line-height: 2;
+            margin-bottom: 48px;
+            color: var(--color-text);
+        }
+
+        /* ============================================
+           Feature / Solution Cards
+           ============================================ */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+
+        .lab-card {
+            border: 1px solid var(--color-border);
+            padding: 32px;
+            border-radius: 8px;
+            background: var(--color-bg);
+            transition: all 0.2s;
+        }
+
+        .lab-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+            border-color: var(--color-accent);
+        }
+
+        .card-icon-wrapper {
+            background: rgba(160, 211, 217, 0.15);
+            /* Accent color transparent */
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            color: var(--color-accent);
+        }
+
+        .card-icon-wrapper svg {
+            width: 32px;
+            height: 32px;
+            color: inherit;
+        }
+
+        .lab-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 16px;
+        }
+
+        .lab-card p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--color-text-sub);
+        }
+
+        /* ============================================
+           Paradox & Issue Components
+           ============================================ */
+        .pain-list dt {
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            border-left: 5px solid var(--color-primary);
+            padding-left: 16px;
+            color: var(--color-black);
+        }
+
+        .pain-list dd {
+            padding-left: 21px;
+            color: var(--color-text);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .paradox-visual {
+            background: var(--color-bg-alt);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .img-wrapper {
+            margin-bottom: 48px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        /* ============================================
+           Security Section (Custom)
+           ============================================ */
+        .security-diagram {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .sec-point {
+            background: #fff;
+            border: 1px solid var(--color-border);
+            padding: 32px;
+            border-radius: 8px;
+        }
+
+        .sec-point h4 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            color: var(--color-black);
+            border-bottom: 3px solid var(--color-accent);
+            display: inline-block;
+            padding-bottom: 6px;
+        }
+
+        /* Footer */
+        .lab-footer {
+            border-top: 1px solid var(--color-border);
+            background: var(--color-black);
+            color: #fff;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+
+            .hero-grid,
+            .lab-section,
+            .lab-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-left,
+            .hero-right,
+            .grid-title,
+            .grid-content {
+                border-right: none;
+                padding: 40px 24px;
+            }
+
+            .section-label {
+                writing-mode: horizontal-tb;
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid var(--color-border);
+                padding: 16px 24px;
+                text-align: left;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .security-diagram {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body class="lab-container">
+
+    <!-- Header -->
+    <header class="lab-header">
+        <div class="lab-logo">
+            <span class="logo-text">MedLocal</span>
+            <span class="logo-sub">by GENSHI AI</span>
+        </div>
+        <nav class="lab-nav">
+            <a href="usecases.html">導入事例</a>
+            <a href="pharma.html">製薬企業の方へ</a>
+            <a href="contact_hospital.html" class="nav-contact">お問い合わせ</a>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="lab-hero">
+        <div class="hero-grid">
+            <div class="hero-left">
+                <h1 class="hero-jp">書く医療から、<br>診る医療へ。</h1>
+                <p class="hero-en">FROM WRITING TO VIEWING MEDICINE</p>
+                <div class="hero-cta">
+                    <a href="contact_hospital.html" class="btn-lab-primary">導入診断・お問い合わせ</a>
+                </div>
+            </div>
+            <div class="hero-right">
+                <p class="hero-desc">
+                    膨大なドキュメント作成に追われる日々を終わらせる。<br>
+                    院内完結型AI「MedLocal」が、<br>医師本来の時間を奪還し、医療の質を高めます。
+                </p>
+                <ul class="hero-value-list">
+                    <li>
+                        <svg class="check-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        完全オフライン稼働（学習データ利用なし）
+                    </li>
+                    <li>
+                        <svg class="check-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        退院サマリー作成時間を最大80%削減
+                    </li>
+                    <li>
+                        <svg class="check-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        医師の時間外労働削減に貢献
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="hero-image-strip">
+            <img src="assets/images/hero_clinic.png" alt="Doctor working in modern clinic">
+        </div>
+    </section>
+
+    <!-- ISSUE -->
+    <section class="lab-section">
+        <div class="section-label">01 / ISSUE</div>
+        <div class="lab-grid">
+            <div class="grid-title">
+                <h2>医療現場の<br>「見えない疲弊」</h2>
+                <p class="jp-sub">電子カルテ導入のジレンマ</p>
+            </div>
+            <div class="grid-content">
+                <div class="img-wrapper">
+                    <img src="assets/images/issue_paperwork.png" alt="Paperwork overload">
+                </div>
+
+                <p class="lead-text">
+                    情報はデータ化されましたが、医師は「画面に向かう時間」が増大。<br>
+                    「書く」業務が診療を圧迫し、患者と向き合う時間が削られています。
+                </p>
+
+                <dl class="pain-list">
+                    <dt>2024年問題と労働規制</dt>
+                    <dd>医師の働き方改革により、時間外労働の上限が厳しく規制されました。しかし、診療の質を落とさずに労働時間を減らすことは極めて困難です。</dd>
+
+                    <dt>AI活用のジレンマ（パラドックス）</dt>
+                    <dd>「患者プライバシー」の壁により、便利なクラウド型AIの恩恵を受けられずにいました。インターネットに接続した瞬間、情報漏洩リスクが発生するため、医療機関は「安全だが不便」な環境を強いられてきました。
+                    </dd>
+                </dl>
+
+                <div class="paradox-visual">
+                    <h3 style="margin-bottom:16px; font-size:1.6rem;">MedLocalの「第3の選択肢」</h3>
+                    <p><strong>「インターネットから物理的に遮断されたAI」</strong></p>
+                    <p style="font-size:1rem; color:var(--color-text-sub); margin-top:12px;">
+                        院内サーバーで完結するため、データ流出リスクは物理的にゼロです。<br>セキュリティと便利さを両立する唯一の解です。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLUTION -->
+    <section class="lab-section" style="background-color: #fafafa;">
+        <div class="section-label">02 / SOLUTION</div>
+        <div class="lab-grid">
+            <div class="grid-title">
+                <h2>MedLocal</h2>
+                <p class="jp-sub">院内完結型AIという答え</p>
+            </div>
+            <div class="grid-content">
+                <p class="lead-text">
+                    インターネットに出さない。学習にも使わせない。<br>
+                    病院の中に「あなた専用の頭脳」を構築します。
+                </p>
+
+                <div class="feature-grid">
+                    <!-- Card 1 -->
+                    <article class="lab-card">
+                        <div class="card-icon-wrapper">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                <polyline points="10 9 9 9 8 9"></polyline>
+                            </svg>
+                        </div>
+                        <h3>ドキュメント自動生成</h3>
+                        <p>診察録を解析し、退院サマリーや紹介状のドラフトを瞬時に生成。医師は「ゼロから書く」苦痛から解放され、AIの案を「確認・修正する」だけの業務に変わります。</p>
+                    </article>
+
+                    <!-- Card 2 -->
+                    <article class="lab-card">
+                        <div class="card-icon-wrapper">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                            </svg>
+                        </div>
+                        <h3>診療情報の構造化</h3>
+                        <p>自然言語のカルテから「疑い病名」「処方意図」「有害事象」などを抽出。日々の診療記録が、そのまま研究や経営分析に使える貴重なデータベースとして蓄積されます。</p>
+                    </article>
+
+                    <!-- Card 3 -->
+                    <article class="lab-card">
+                        <div class="card-icon-wrapper">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                            </svg>
+                        </div>
+                        <h3>教育・研修支援</h3>
+                        <p>研修医のカルテに対し、AIが指導医視点でセルフチェックを行います。指導医の確認時間を大幅に短縮しつつ、研修医の自律的な学習サイクルを高速化します。</p>
+                    </article>
+
+                    <!-- Card 4 -->
+                    <article class="lab-card">
+                        <div class="card-icon-wrapper">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                            </svg>
+                        </div>
+                        <h3>DPCコーディング支援</h3>
+                        <p>複雑なDPCコーディングをサポート。記載内容に基づき、適切な病名・副傷病名をレコメンドすることで、請求漏れを防ぎ、病院の収益性を最大化します。</p>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECURITY -->
+    <section class="lab-section" style="background-color: var(--color-black); color: white; border-bottom:none;">
+        <div class="section-label" style="background: #222; border-color: #444; color: #888;">03 / SECURITY</div>
+        <div class="lab-grid">
+            <div class="grid-title" style="border-right-color: #444;">
+                <h2 style="color: white;">完全隔離型AI</h2>
+                <p class="jp-sub" style="color: #aaa;">院内完結のセキュリティ</p>
+            </div>
+            <div class="grid-content">
+                <div class="img-wrapper" style="border: 1px solid #333;">
+                    <img src="assets/images/solution_security.png" alt="Secure Server" style="opacity: 0.9;">
+                </div>
+
+                <p class="lead-text" style="color: #ddd;">
+                    MedLocalは、ハッキングリスクを「確率」ではなく「物理」で解決します。<br>
+                    外部ネットワークと一切接続しない「完全オフライン環境」で、データは貴院のサーバー内のみに存在します。
+                </p>
+
+                <div class="security-diagram">
+                    <div class="sec-point" style="background: #1a1a1a; border-color: #333;">
+                        <h4 style="color: white;">完全オフライン環境 (Air-Gapped)</h4>
+                        <p style="color: #aaa;">
+                            インターネット接続なしで動作します。外部からの侵入経路が物理的に存在しないため、ハッキングは不可能です。「ファイアウォール」ではなく「ケーブル切断」による安全です。</p>
+                    </div>
+                    <div class="sec-point" style="background: #1a1a1a; border-color: #333;">
+                        <h4 style="color: white;">データの院内独占 (Data Sovereignty)</h4>
+                        <p style="color: #aaa;">患者様のデータが、外部AIの学習に使われることは一切ありません。データは100%、病院の資産として院内で管理されます。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="lab-section" style="min-height: auto;">
+        <div class="section-label">04 / CONTACT</div>
+        <div class="lab-grid">
+            <div class="grid-title">
+                <h2>お問い合わせ</h2>
+                <p class="jp-sub">導入診断・デモのご依頼</p>
+            </div>
+            <div class="grid-content" style="display: flex; flex-direction: column; justify-content: center;">
+                <p class="lead-text">
+                    MedLocalの導入、セキュリティ詳細、トライアルについて
+                </p>
+                <div>
+                    <a href="contact_hospital.html" class="btn-lab-primary">お問い合わせフォームへ</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="lab-footer">
+        <div class="lab-container" style="border: none; background: transparent;">
+            <a href="#" class="footer-logo">MedLocal</a>
+            <p>&copy; 2024 GENSHI AI. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
